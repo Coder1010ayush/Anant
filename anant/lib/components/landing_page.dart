@@ -163,7 +163,7 @@ class _LandingPageState extends State<LandingPage> {
               child:frontPageWidgetList.isEmpty ? widgt:
               Container
               (
-                color: Color.fromARGB(255, 8, 0, 0),
+                color: const Color.fromARGB(255, 8, 0, 0),
                 child: ListView.builder
                 (
                   physics:const AlwaysScrollableScrollPhysics(),
@@ -254,7 +254,7 @@ class _LandingPageState extends State<LandingPage> {
           frontPageWidgetList.add(wigList[0]);
           frontPageWidgetList.add(wigList[1]);
         }
-        if (frontPageWidgetList.length == 2)
+        if (frontPageWidgetList.length == 2 || frontPageWidgetList.length ==1)
         {
           frontPageWidgetList.add(initialWidget);
         }
