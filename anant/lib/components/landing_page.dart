@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:anant/functions/primaryFunction.dart';
 import 'package:device_apps/device_apps.dart';
 import 'dart:core';
-import 'package:flutter/widgets.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -17,6 +16,7 @@ class _LandingPageState extends State<LandingPage> {
   List<Widget> frontPageWidgetList = [];
   List<Application> appList = [];
   Map<String , Application> mapping = {};
+  bool isBluetoothOn = false;
   
 
 
@@ -48,6 +48,8 @@ class _LandingPageState extends State<LandingPage> {
     _findInstalledApplication();
   }
 
+
+
   @override 
   Widget build(BuildContext context)
   
@@ -70,7 +72,7 @@ class _LandingPageState extends State<LandingPage> {
                   fontWeight: FontWeight.w800),
             ),
           ),
-          Container(
+          SizedBox(
             width: 245,
             height: 20,
 
@@ -153,6 +155,7 @@ class _LandingPageState extends State<LandingPage> {
           )
         ),
         body: Column
+
         ( 
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -163,7 +166,7 @@ class _LandingPageState extends State<LandingPage> {
               child:frontPageWidgetList.isEmpty ? widgt:
               Container
               (
-                color: const Color.fromARGB(255, 8, 0, 0),
+                color:const Color.fromARGB(255, 7, 0, 0),
                 child: ListView.builder
                 (
                   physics:const AlwaysScrollableScrollPhysics(),
@@ -223,12 +226,10 @@ class _LandingPageState extends State<LandingPage> {
                     ) ;
                 }
               ),
-              
-            ), 
-        
+            )
           ]
-        ),
-      ) ,
+        )
+      )
     );
   }
   
@@ -238,7 +239,7 @@ class _LandingPageState extends State<LandingPage> {
     )
     {
       
-    var localList;
+    List<Widget> localList;
     List<Widget> wigList =
     localList =  commandParser(value, context, frontPageWidgetList, mapping);
     setState
@@ -254,6 +255,7 @@ class _LandingPageState extends State<LandingPage> {
           frontPageWidgetList.add(wigList[0]);
           frontPageWidgetList.add(wigList[1]);
         }
+        
         if (frontPageWidgetList.length == 2 || frontPageWidgetList.length ==1)
         {
           frontPageWidgetList.add(initialWidget);

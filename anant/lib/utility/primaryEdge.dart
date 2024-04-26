@@ -115,3 +115,65 @@ getRenderingWidgetInfo(String cmd , String value , Application app )
   ); 
   return widgt;
 }
+
+
+List<Widget> callHandlerAlphanumeric(String value)
+{
+  return  [const Text("data")];
+}
+
+List<Widget> callHandlerName(String value) 
+{
+  return [const Text("data")];
+}
+
+
+Widget showMessage(String message)
+{
+  var widg = Text(
+    message, 
+    style:const TextStyle
+    ( 
+      color: Colors.green,
+      fontFamily: 'Fira Code', 
+      fontSize: 14, 
+      fontWeight: FontWeight.w900 
+    ),
+  );
+  return widg;
+}
+
+Future<void> showTimedDialog(BuildContext context, String message,
+    {int durationSeconds = 2, double opacity = 0.8}) async {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return Container(
+          color: const Color.fromARGB(255, 215, 6, 6),
+          width: 80,
+          height: 40,
+          child: Opacity(
+              opacity: opacity,
+              child: Container(
+                color: const Color.fromARGB(255, 78, 234, 11),
+                child: AlertDialog(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  content: Text(
+                    message,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 97, 253, 1),
+                        fontFamily: 'Fira Code',
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              )));
+    },
+  );
+
+  await Future.delayed(Duration(seconds: durationSeconds));
+  // ignore: use_build_context_synchronously
+  Navigator.of(context).pop();
+}

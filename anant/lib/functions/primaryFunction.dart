@@ -5,10 +5,10 @@ import 'package:device_apps/device_apps.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
 
-List<Widget> commandParser(String command, BuildContext context,
+List<Widget>  commandParser(String command, BuildContext context,
   List<Widget>finalWidgetlist, Map<String, Application> mapping) {
-
   List<Widget> widgetList = [];
+  command = command.trim();
   // splitting the command and break down into two segment
   // first is cmd and second is input string text
   String cmd = "";
@@ -36,20 +36,46 @@ List<Widget> commandParser(String command, BuildContext context,
   }
   if (cmd == "launch")
   {
-    var renderingWidget = getRenderingWidget(cmd, value);
-    var actionWidget = getOutputWidget(cmd, value);
-    widgetList.add(renderingWidget);
-    widgetList.add(actionWidget);
-    DeviceApps.openApp(mapping[value]!.packageName);
+    if (mapping[value] != null)
+    {
+
+      var renderingWidget = getRenderingWidget(cmd, value);
+      var actionWidget = getOutputWidget(cmd, value);
+      widgetList.add(renderingWidget);
+      widgetList.add(actionWidget);
+      DeviceApps.openApp(mapping[value]!.packageName);
+      
+    }
+    else 
+    {
+      var widg = showMessage("$value App is not found");
+      var widg1 = showMessage("Can't open $value  application");
+      widgetList.add(widg);
+      widgetList.add(widg1);
+    }
+    return widgetList;
   } 
   else if (cmd == "info")
   {
-    Application app = mapping[value]!;
-    var renderingWidget = getRenderingWidgetInfo(cmd, value,app);
-    var actionWidget = getOutputWidgetInfo(cmd, value,app);
-    widgetList.add(renderingWidget);
-    widgetList.add(actionWidget);
-    DeviceApps.openAppSettings(app.packageName);
+    try 
+    {
+      Application app = mapping[value]!;
+      var renderingWidget = getRenderingWidgetInfo(cmd, value, app);
+      var actionWidget = getOutputWidgetInfo(cmd, value, app);
+      widgetList.add(renderingWidget);
+      widgetList.add(actionWidget);
+      DeviceApps.openAppSettings(app.packageName); 
+
+    } 
+    catch (e) 
+    {
+      var widg = showMessage("$value App is not found");
+      var helper =  showMessage("Give correct name of application!");
+      widgetList.add(widg);
+      widgetList.add(helper);
+    }
+    return widgetList;
+   
   }
   else if (cmd == "clear")
   {
@@ -72,7 +98,17 @@ List<Widget> commandParser(String command, BuildContext context,
 
   else if (cmd == "call")
   {
+    final RegExp alphaNumeric = RegExp(r'^[a-zA-Z0-9]+$');
+    bool match =  alphaNumeric.hasMatch(value);
 
+    if (match)
+    {
+      callHandlerAlphanumeric(value);
+    }
+    else 
+    {
+      callHandlerName(value);
+    }
   }
   return widgetList;
 }

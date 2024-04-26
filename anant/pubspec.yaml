@@ -41,6 +41,9 @@ dependencies:
   provider: ^6.1.2
   url_launcher: ^6.0.9
   flutter_contacts: ^1.1.7+1
+  bluetooth_enable_fork: ^0.1.6
+  flutter_blue: ^0.8.0
+  flutter_blue_plus: ^1.32.4
 
 dev_dependencies:
   flutter_test:
