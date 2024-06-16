@@ -1,22 +1,21 @@
-import 'package:anant/components/landing_page.dart';
+import 'package:anant/components/application_screen.dart';
+import 'package:anant/components/home_screen.dart';
 import 'package:flutter/material.dart';
 
-void main(){
-  runApp( const App());
+void main() {
+  runApp(MyApp());
 }
 
-class App extends StatefulWidget {
-  const App({super.key});
-
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const LandingPage();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/application': (context) => ApplicationScreen(),
+      },
+    );
   }
 }
-
-

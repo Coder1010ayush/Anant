@@ -1,0 +1,17 @@
+{
+"editor.autoClosingQuotes": "always",
+"editor.autoIndent": "advanced",
+"editor.lineHeight": 1.9,
+"editor.fontSize": 13,
+"editor.acceptSuggestionOnEnter": "on",
+"editor.autoClosingBrackets": "always",
+"editor.minimap.autohide": true,
+"editor.copyWithSyntaxHighlighting": true,
+"editor.cursorStyle": "underline",
+"editor.cursorWidth": 20,
+"editor.bracketPairColorization.enabled": true,
+"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+"editor.acceptSuggestionOnCommitCharacter": true,
+"editor.formatOnSave": true,
+"editor.tabCompletion": "on"
+}
